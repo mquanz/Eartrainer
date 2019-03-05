@@ -16,10 +16,10 @@ class Window:
         self.label1 = tk.Label(master, text = 'Welcome to the famous Eartrainer - created by M & R', font = ('Times', 14), bd = 15)
         self.label1.grid(row = 0, columnspan = 2)
 
-        self.repeat_button = tk.Button(master, text = 'Repeat Interval', command = self.Repeat_Interval)
+        self.repeat_button = tk.Button(master, text = 'REPEAT', command = self.Repeat_Interval)
         self.repeat_button.grid(row = 2, column = 1)
         
-        self.play_button = tk.Button(master, text = 'Play new Interval', command = self.Play_Interval)
+        self.play_button = tk.Button(master, text = 'PLAY', command = self.Play_Interval)
         self.play_button.grid(row = 2, column = 2)
 
         self.entry = tk.Entry(master, width = 32, fg = 'grey')
@@ -29,10 +29,14 @@ class Window:
         self.entry.grid(row = 1)
     
     def Repeat_Interval(self):
-        wave_obj = sa.WaveObject.from_wave_file("../media/" + media)
-        play_obj = wave_obj.play()
-        play_obj.wait_done()
-        print(media)
+        try:
+            wave_obj = sa.WaveObject.from_wave_file("../media/" + media)
+            play_obj = wave_obj.play()
+            play_obj.wait_done()
+            print(media)
+        except NameError:
+            messagebox.showinfo('Error', 'Press PLAY first to randomly play an Interval')
+
     
     def Play_Interval(self):
         sounds = os.listdir("../media")
@@ -46,10 +50,9 @@ class Window:
     def Control(self):
         user_input = self.entry.get() + ".wav"
         if user_input == media:
-            messagebox.showinfo('Ergebnis', 'Well done, it was ' + media + '! :)')
+            messagebox.showinfo('Result', 'Well done, it was ' + media + '! :)')
         else:
-            messagebox.showinfo('Ergebnis', 'Youre wrong, it was ' + media + '! :(')
-#        self.entry.delete(0, tk.END)
+            messagebox.showinfo('Result', 'Youre wrong, it was ' + media + '! :(')
 
     def entry_click(self, event, default_text):
         if self.entry.get() == default_text:
