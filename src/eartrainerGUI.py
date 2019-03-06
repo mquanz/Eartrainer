@@ -21,6 +21,9 @@ class Window:
         
         self.play_button = tk.Button(master, text = 'PLAY', command = self.Play_Interval)
         self.play_button.grid(row = 2, column = 2)
+        
+        self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', command = self.Control)
+        self.check_button.grid(row = 1, column = 1)
 
         self.entry = tk.Entry(master, width = 32, fg = 'grey')
         self.entry.insert(0, 'Enter your guess here...')
@@ -36,7 +39,6 @@ class Window:
             print(media)
         except NameError:
             messagebox.showinfo('Error', 'Press PLAY first to randomly play an Interval')
-
     
     def Play_Interval(self):
         sounds = os.listdir("../media")
@@ -49,11 +51,13 @@ class Window:
 
     def Control(self):
         user_input = self.entry.get() + ".wav"
-        if user_input == media:
-            messagebox.showinfo('Result', 'Well done, it was ' + media + '! :)')
-        else:
-            messagebox.showinfo('Result', 'Youre wrong, it was ' + media + '! :(')
-
+        try:
+            if user_input == media:
+                messagebox.showinfo('Result', 'Well done, it was ' + media + '! :)')
+            else:
+                messagebox.showinfo('Result', 'Youre wrong, it was ' + media + '! :(')
+        except NameError:
+                messagebox.showinfo('Error', 'Enter your guess first')
     def entry_click(self, event, default_text):
         if self.entry.get() == default_text:
             self.entry.delete(0, tk.END)
