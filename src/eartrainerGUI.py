@@ -65,7 +65,6 @@ class Window:
                     messagebox.showinfo('Error', 'Enter your guess first')
         
     def entry_click(self, event, default_text):
-        if self.entry.get() == default_text:
             self.entry.delete(0, tk.END)
             self.entry.config(fg = 'black')
 
