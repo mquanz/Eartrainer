@@ -39,8 +39,13 @@ class Window:
 
     def Next_Interval(self):
         global counter
-        counter += 1
-        print(media, media[counter])
+        if counter < len(media)-1:
+            counter += 1
+            print(media, media[counter])
+        else:
+            messagebox.showinfo('End of Traing', '''Congrats! You've trained hard. List is replaying now.''' )
+            counter = 0
+            print(media, media[counter])
 
     def Play_Interval(self):
         wave_obj = sa.WaveObject.from_wave_file("../media/" + media[counter])
