@@ -16,16 +16,16 @@ class Window:
         self.label1 = tk.Label(master, text = 'Welcome to the famous Eartrainer - created by M & R', font = ('Times', 14), bd = 18)
         self.label1.grid(row = 0, columnspan = 2)
         
-        self.previous_button = tk.Button(master, text = 'PREVIOUS', command = self.Previous_Interval)
+        self.previous_button = tk.Button(master, text = 'PREVIOUS', bg = 'grey', bd = 5, command = self.Previous_Interval)
         self.previous_button.grid(row = 1, column = 0)
         
-        self.play_button = tk.Button(master, text = 'PLAY', command = self.Play_Interval)
+        self.play_button = tk.Button(master, text = 'PLAY', bg = 'green', bd = 5, command = self.Play_Interval)
         self.play_button.grid(row = 1, column = 1)
         
-        self.next_button = tk.Button(master, text = 'NEXT', command = self.Next_Interval)
+        self.next_button = tk.Button(master, text = 'NEXT', bg = 'grey', bd = 5, command = self.Next_Interval)
         self.next_button.grid(row = 1, column = 2)
         
-        self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', command = self.Control)
+        self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', bd = 5, command = self.Control)
         self.check_button.grid(row = 2, column = 1)
         
         self.create_checkboxes()
@@ -61,7 +61,7 @@ class Window:
         if user_input == 1:
             messagebox.showinfo('Result', 'Well done, it was ' + media[counter] + '! :)')
         else:
-            messagebox.showinfo('Result', 'Youre wrong, it was ' + media[counter] + '! :(')
+            messagebox.showinfo('Result', 'Youre wrong, try again.')
             
     def create_checkboxes(self):
         # Possible rows for placement of checkbuttons are 3, 4 and 5.
