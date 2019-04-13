@@ -27,6 +27,8 @@ class Window:
         
         self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', command = self.Control)
         self.check_button.grid(row = 1, column = 1)
+        
+        self.create_checkboxes()
 
     def Previous_Interval(self):
         global counter
@@ -42,6 +44,7 @@ class Window:
         if counter < len(media)-1:
             counter += 1
             print(media, media[counter])
+            self.create_checkboxes()
         else:
             messagebox.showinfo('End of Traing', '''Congrats! You've trained hard. List is replaying now.''' )
             counter = 0
@@ -53,6 +56,18 @@ class Window:
         play_obj.wait_done()
         print(media, media[counter])
         
+    def Control(self):
+        user_input = self.checkbox1.get()
+        if user_input == 1:
+            messagebox.showinfo('Result', 'Well done, it was ' + media[counter] + '! :)')
+        else:
+            messagebox.showinfo('Result', 'Youre wrong, it was ' + media[counter] + '! :(')
+        
+    def entry_click(self, event, default_text):
+            self.entry.delete(0, tk.END)
+            self.entry.config(fg = 'black')
+            
+    def create_checkboxes(self):
         # Possible rows for placement of checkbuttons are 3, 4 and 5.
         rows = [3,4,5]
         # True answer will be placed randomly.
@@ -69,16 +84,6 @@ class Window:
         self.checkbox3 = tk.IntVar()
         tk.Checkbutton(text = labels[1], variable = self.checkbox3).grid(row = rows[1])
 
-    def Control(self):
-        user_input = self.checkbox1.get()
-        if user_input == 1:
-            messagebox.showinfo('Result', 'Well done, it was ' + media[counter] + '! :)')
-        else:
-            messagebox.showinfo('Result', 'Youre wrong, it was ' + media[counter] + '! :(')
-        
-    def entry_click(self, event, default_text):
-            self.entry.delete(0, tk.END)
-            self.entry.config(fg = 'black')
 
 root = tk.Tk()
 create_window = Window(root)
