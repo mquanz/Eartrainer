@@ -13,7 +13,7 @@ class Window:
         self.master = master
         master.title('Eartrainer')
         
-        self.label1 = tk.Label(master, text = 'Welcome to the famous Eartrainer - created by M & R', font = ('Times', 14), bd = 15)
+        self.label1 = tk.Label(master, text = 'Welcome to the famous Eartrainer - created by M & R', font = ('Times', 14), bd = 18)
         self.label1.grid(row = 0, columnspan = 2)
         
         self.previous_button = tk.Button(master, text = 'PREVIOUS', command = self.Previous_Interval)
