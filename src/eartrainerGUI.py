@@ -58,11 +58,12 @@ class Window:
         print(media, media[counter])
         
     def Control(self):
-        user_input = self.checkbox1.get()
-        if user_input == 1:
-            messagebox.showinfo('Result', 'Well done, it was ' + dic[media[counter]] + '! :)')
+        user_input = [self.checkbox1.get(), self.checkbox2.get(), self.checkbox3.get()]
+        # When (only) messagebox1 is true, show right answer.
+        if user_input[0] == 1 and user_input[1] == 0 and user_input[2] == 0:
+            messagebox.showinfo('Result', 'Well done, it was a ' + dic[media[counter]] + '! :)')
         else:
-            messagebox.showinfo('Result', 'Youre wrong, try again.')
+            messagebox.showinfo('Result', 'You are wrong or tried to enter multiple answers. Please try again.')
             
     def create_checkboxes(self):
         # Possible rows for placement of checkbuttons are 3, 4 and 5.
@@ -71,9 +72,9 @@ class Window:
         truerow = random.choice(rows)
         # Remove true row from list for placement of wrong checkbuttons.
         rows.remove(truerow)
-        # Create list without true answer for labels of wrong heckbuttons and shuffle it.
+        # Create list without true answer for labels of wrong ceckbuttons and shuffle it.
         labels = random.sample([x for i,x in enumerate(media) if i!=counter], len(media)-1)
-        # Checkbox1 always contains true answer.
+        # Create checkboxes, checkbox1 always contains true answer.
         self.checkbox1 = tk.IntVar()
         tk.Checkbutton(text = dic[media[counter]], variable = self.checkbox1).grid(row = truerow, sticky = 'w')
         self.checkbox2 = tk.IntVar()
