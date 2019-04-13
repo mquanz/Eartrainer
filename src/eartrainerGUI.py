@@ -17,16 +17,16 @@ class Window:
         self.label1.grid(row = 0, columnspan = 2)
         
         self.previous_button = tk.Button(master, text = 'PREVIOUS', command = self.Previous_Interval)
-        self.previous_button.grid(row = 2, column = 1)
+        self.previous_button.grid(row = 1, column = 0)
         
         self.play_button = tk.Button(master, text = 'PLAY', command = self.Play_Interval)
-        self.play_button.grid(row = 2, column = 2)
+        self.play_button.grid(row = 1, column = 1)
         
         self.next_button = tk.Button(master, text = 'NEXT', command = self.Next_Interval)
-        self.next_button.grid(row = 2, column = 3)
+        self.next_button.grid(row = 1, column = 2)
         
         self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', command = self.Control)
-        self.check_button.grid(row = 1, column = 1)
+        self.check_button.grid(row = 2, column = 1)
         
         self.create_checkboxes()
 
@@ -62,10 +62,6 @@ class Window:
             messagebox.showinfo('Result', 'Well done, it was ' + media[counter] + '! :)')
         else:
             messagebox.showinfo('Result', 'Youre wrong, it was ' + media[counter] + '! :(')
-        
-    def entry_click(self, event, default_text):
-            self.entry.delete(0, tk.END)
-            self.entry.config(fg = 'black')
             
     def create_checkboxes(self):
         # Possible rows for placement of checkbuttons are 3, 4 and 5.
