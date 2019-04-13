@@ -5,6 +5,7 @@ import os
 import random
 
 media = random.sample(os.listdir("../media"), len(os.listdir("../media")))
+dic = {'C1.wav':'kl. Sekunde', 'C4.wav':'gr. Terz', 'C6.wav':'verm. Quinte', 'C7.wav':'r. Quinte'}
 counter = 0
 
 class Window:
@@ -59,7 +60,7 @@ class Window:
     def Control(self):
         user_input = self.checkbox1.get()
         if user_input == 1:
-            messagebox.showinfo('Result', 'Well done, it was ' + media[counter] + '! :)')
+            messagebox.showinfo('Result', 'Well done, it was ' + dic[media[counter]] + '! :)')
         else:
             messagebox.showinfo('Result', 'Youre wrong, try again.')
             
@@ -74,11 +75,11 @@ class Window:
         labels = random.sample([x for i,x in enumerate(media) if i!=counter], len(media)-1)
         # Checkbox1 always contains true answer.
         self.checkbox1 = tk.IntVar()
-        tk.Checkbutton(text = media[counter], variable = self.checkbox1).grid(row = truerow)
+        tk.Checkbutton(text = dic[media[counter]], variable = self.checkbox1).grid(row = truerow, sticky = 'w')
         self.checkbox2 = tk.IntVar()
-        tk.Checkbutton(text = labels[0], variable = self.checkbox2).grid(row = rows[0])
+        tk.Checkbutton(text = dic[labels[0]], variable = self.checkbox2).grid(row = rows[0], sticky = 'w')
         self.checkbox3 = tk.IntVar()
-        tk.Checkbutton(text = labels[1], variable = self.checkbox3).grid(row = rows[1])
+        tk.Checkbutton(text = dic[labels[1]], variable = self.checkbox3).grid(row = rows[1], sticky = 'w')
 
 
 root = tk.Tk()
