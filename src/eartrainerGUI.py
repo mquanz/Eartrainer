@@ -77,11 +77,11 @@ class Window:
         labels = random.sample([x for i,x in enumerate(media) if i!=counter], len(media)-1)
         # Create checkboxes, checkbox1 always contains true answer.
         self.checkbox1 = tk.IntVar()
-        tk.Checkbutton(text = dic[media[counter]], variable = self.checkbox1).grid(row = truerow, sticky = 'w')
+        tk.Checkbutton(text = dic[media[counter]], variable = self.checkbox1, bg = 'white', width = 20).grid(row = truerow, sticky = 'w')
         self.checkbox2 = tk.IntVar()
-        tk.Checkbutton(text = dic[labels[0]], variable = self.checkbox2).grid(row = rows[0], sticky = 'w')
+        tk.Checkbutton(text = dic[labels[0]], variable = self.checkbox2, bg = 'white', width = 20).grid(row = rows[0], sticky = 'w')
         self.checkbox3 = tk.IntVar()
-        tk.Checkbutton(text = dic[labels[1]], variable = self.checkbox3).grid(row = rows[1], sticky = 'w')
+        tk.Checkbutton(text = dic[labels[1]], variable = self.checkbox3, bg = 'white', width = 20).grid(row = rows[1], sticky = 'w')
 
 
 root = tk.Tk()
