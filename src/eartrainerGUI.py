@@ -26,7 +26,7 @@ class Window:
         self.next_button = tk.Button(master, text = 'NEXT', bg = 'grey', bd = 5, command = self.Next_Interval)
         self.next_button.grid(row = 1, column = 2)
         
-        self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', bd = 5, command = self.Control)
+        self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', bd = 5, command = self.Check_Answer)
         self.check_button.grid(row = 2, column = 1)
         
         self.create_checkboxes()
@@ -36,6 +36,7 @@ class Window:
         if counter > 0:
             counter -= 1
             print(media, media[counter])
+            self.create_checkboxes()
         else:
             messagebox.showinfo('Error', 'Counter too low')
             counter = 0
@@ -47,7 +48,7 @@ class Window:
             print(media, media[counter])
             self.create_checkboxes()
         else:
-            messagebox.showinfo('End of Traing', '''Congrats! You've trained hard. List is replaying now.''' )
+            messagebox.showinfo('End of Trainng', '''Congrats! You've trained hard. List is replaying now.''' )
             counter = 0
             print(media, media[counter])
 
@@ -57,7 +58,7 @@ class Window:
         play_obj.wait_done()
         print(media, media[counter])
         
-    def Control(self):
+    def Check_Answer(self):
         user_input = [self.checkbox1.get(), self.checkbox2.get(), self.checkbox3.get()]
         # When (only) messagebox1 is true, show right answer.
         if user_input[0] == 1 and user_input[1] == 0 and user_input[2] == 0:
