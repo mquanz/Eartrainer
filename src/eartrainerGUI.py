@@ -14,7 +14,7 @@ class Window:
         self.master = master
         master.title('Eartrainer')
         
-        self.label1 = tk.Label(master, text = 'Welcome to the famous Eartrainer - created by M & R', font = ('Times', 14), bd = 18)
+        self.label1 = tk.Label(master, text = 'Welcome to the famous Eartrainer - created by M & R', font = ('Times', 14), bd = 18, bg = 'white')
         self.label1.grid(row = 0, columnspan = 2)
         
         self.previous_button = tk.Button(master, text = 'PREVIOUS', bg = 'grey', bd = 5, command = self.Previous_Interval)
@@ -86,5 +86,6 @@ class Window:
 
 
 root = tk.Tk()
+root.configure(background = 'white')
 create_window = Window(root)
 root.mainloop()
