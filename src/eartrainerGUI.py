@@ -15,9 +15,10 @@ class Window:
     def __init__(self, master):
         self.master = master
         master.title('Eartrainer')
+        master.bind('<Return>', self.Check_Answer)
         
-        self.label1 = tk.Label(master, text = 'Welcome to the famous Eartrainer - created by M & R', font = ('Arial Bold', 14), bd = 18, bg = 'white')
-        self.label1.grid(row = 0, columnspan = 2)
+        self.label1 = tk.Label(master, text = 'Welcome to the famous Eartrainer - created by M & R', font = ('Arial Bold', 14), bg = 'white')
+        self.label1.grid(row = 0, columnspan = 3, pady = 20, padx = 10)
         
         self.previous_button = tk.Button(master, text = 'PREVIOUS', bg = 'grey', bd = 5, command = self.Previous_Interval)
         self.previous_button.grid(row = 1, column = 0)
@@ -28,16 +29,17 @@ class Window:
         self.next_button = tk.Button(master, text = 'NEXT', bg = 'grey', bd = 5, command = self.Next_Interval)
         self.next_button.grid(row = 1, column = 2)
         
-        self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', bd = 5, command = self.Check_Answer)
-        self.check_button.grid(row = 2, column = 1)
+        self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', bd = 5)
+        self.check_button.bind('<Button-1>', lambda event: self.Check_Answer(event))
+        self.check_button.grid(row = 2, column = 1, pady = 10)
         
         self.combo = tkk.Combobox(master)
         self.combo['values'] = sorted(list(set([dic[x] for x in media])))
-        self.combo.grid(row = 3)
+        self.combo.grid(row = 3, columnspan = 3, pady = 10)
         
         self.progress = tkk.Progressbar(master, length = 500)
         self.progress['value'] = 0
-        self.progress.grid(row = 4)
+        self.progress.grid(row = 4, columnspan = 3, sticky = 'WE')
 
     def Previous_Interval(self):
         global counter
@@ -61,13 +63,14 @@ class Window:
         play_obj.wait_done()
         print(media, media[counter])
         
-    def Check_Answer(self):
+    def Check_Answer(self, event):
         user_input = self.combo.get()
         if user_input == dic[media[counter]]:
             messagebox.showinfo('Result', 'Well done, it was a ' + dic[media[counter]] + '! :)')
             self.progress['value'] = (counter+1)/len(media) * 100
         else:
             messagebox.showinfo('Result', 'You are wrong, please try again.')
+        return "break"
 
 root = tk.Tk()
 root.configure(background = 'white')
