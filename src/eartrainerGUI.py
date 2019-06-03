@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from tkinter.ttk import Combobox
+import tkinter.ttk as tkk
 import simpleaudio as sa
 import os
 import random
@@ -31,9 +31,13 @@ class Window:
         self.check_button = tk.Button(master, text = 'CHECK', bg = 'orange', bd = 5, command = self.Check_Answer)
         self.check_button.grid(row = 2, column = 1)
         
-        self.combo = Combobox(master)
+        self.combo = tkk.Combobox(master)
         self.combo['values'] = sorted(list(set([dic[x] for x in media])))
         self.combo.grid(row = 3)
+        
+        self.progress = tkk.Progressbar(master, length = 500)
+        self.progress['value'] = 0
+        self.progress.grid(row = 4)
 
     def Previous_Interval(self):
         global counter
@@ -61,6 +65,7 @@ class Window:
         user_input = self.combo.get()
         if user_input == dic[media[counter]]:
             messagebox.showinfo('Result', 'Well done, it was a ' + dic[media[counter]] + '! :)')
+            self.progress['value'] = (counter+1)/len(media) * 100
         else:
             messagebox.showinfo('Result', 'You are wrong, please try again.')
 
