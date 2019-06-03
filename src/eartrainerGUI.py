@@ -7,7 +7,7 @@ import random
 
 media = random.sample(os.listdir("../media"), len(os.listdir("../media")))
 
-dic = {'C0.wav':'Prime', 'C1.wav':'kl. Sekunde', 'C1r.wav':'kl. Sekunde', 'C2.wav':'gr. Sekunde','C2r.wav':'gr. Sekunde', 'C3.wav':'kl. Terz', 'C3r.wav':'kl. Terz', 'C4.wav':'gr. Terz', 'C4r.wav':'gr. Terz', 'C5.wav':'r. Quarte', 'C5r.wav':'r. Quarte', 'C6.wav':'verm. Quinte', 'C6r.wav':'verm. Quinte', 'C7.wav':'r. Quinte', 'C7r.wav':'r. Quinte', 'C8.wav':'kl. Sexte', 'C8r.wav':'kl. Sexte', 'C9.wav':'gr. Sexte', 'C9r.wav':'gr. Sexte', 'C10.wav':'kl. Septime', 'C10r.wav':'kl. Septime', 'C11.wav':'gr. Septime', 'C11r.wav':'gr. Septime', 'C12.wav':'Oktave', 'C12r.wav':'Oktave'}
+dic = {'C0.wav':'1: Prime', 'C1.wav':'2: Sekunde kl.', 'C1r.wav':'2: Sekunde kl.', 'C2.wav':'2: Sekunde gr.','C2r.wav':'2: Sekunde gr.', 'C3.wav':'3: Terz kl.', 'C3r.wav':'3: Terz kl.', 'C4.wav':'3: Terz gr.', 'C4r.wav':'3: Terz gr.', 'C5.wav':'4: Quarte r.', 'C5r.wav':'4: Quarte r.', 'C6.wav':'5: Quinte verm.', 'C6r.wav':'5: Quinte verm.', 'C7.wav':'5: Quinte r.', 'C7r.wav':'5: Quinte r.', 'C8.wav':'6: Sexte kl.', 'C8r.wav':'6: Sexte kl.', 'C9.wav':'6: Sexte gr.', 'C9r.wav':'6: Sexte gr.', 'C10.wav':'7: Septime kl.', 'C10r.wav':'7: Septime kl.', 'C11.wav':'7: Septime gr.', 'C11r.wav':'7: Septime gr.', 'C12.wav':'8: Oktave', 'C12r.wav':'8: Oktave'}
 counter = 0
 
 class Window:
@@ -53,9 +53,11 @@ class Window:
         global counter
         if counter < len(media)-1:
             counter += 1
+            self.progress['value'] = (counter+1)/len(media) * 100
         else:
             messagebox.showinfo('End of Trainng', '''Congrats! You've trained hard. List is replaying now.''' )
             counter = 0
+            self.progress['value'] = 0
 
     def Play_Interval(self):
         wave_obj = sa.WaveObject.from_wave_file("../media/" + media[counter])
@@ -67,7 +69,6 @@ class Window:
         user_input = self.combo.get()
         if user_input == dic[media[counter]]:
             messagebox.showinfo('Result', 'Well done, it was a ' + dic[media[counter]] + '! :)')
-            self.progress['value'] = (counter+1)/len(media) * 100
         else:
             messagebox.showinfo('Result', 'You are wrong, please try again.')
         return "break"
